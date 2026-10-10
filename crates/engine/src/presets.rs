@@ -252,6 +252,53 @@ pub fn builtin() -> Vec<Preset> {
             "Golden Glow",
             json!({"grading": {"highlights": {"hue": 40.0, "sat": 18.0, "lum": 0.0}, "midtones": {"hue": 35.0, "sat": 8.0, "lum": 0.0}}, "light": {"shadows": 15.0}, "effects": {"clarity": -8.0}}),
         ),
+        // Backlit golden hour: warm amber highlights, soft low-contrast haze, matte lifted blacks, olive greens.
+        p(
+            "Portrait",
+            "evening-glory",
+            "Evening Glory",
+            json!({
+                "light": {"exposure": 0.15, "contrast": -10.0, "highlights": -30.0, "shadows": 30.0, "whites": 8.0, "blacks": 14.0},
+                "curve": {"shadows": 10.0},
+                "grading": {
+                    "highlights": {"hue": 42.0, "sat": 28.0, "lum": 0.0},
+                    "midtones": {"hue": 38.0, "sat": 10.0, "lum": 0.0},
+                    "shadows": {"hue": 95.0, "sat": 10.0, "lum": 0.0}
+                },
+                "mixer": {"green": {"hue": -20.0, "sat": -15.0, "lum": -10.0}, "orange": {"sat": 5.0, "lum": 8.0}, "yellow": {"sat": 10.0}},
+                "color": {"vibrance": 10.0},
+                "effects": {"dehaze": -8.0, "clarity": -8.0, "texture": -10.0},
+                "vignette": {"amount": -15.0}
+            }),
+        ),
+        // Steel-grey and gritty: warm cast neutralised, greens/yellows/blues pulled toward grey while skin and hair keep
+        // their warmth, blue-teal shadows, strong micro-contrast, grain and a dark edge.
+        p(
+            "Style",
+            "metallic",
+            "Metallic",
+            json!({
+                "light": {"exposure": 0.0, "contrast": 24.0, "highlights": -25.0, "shadows": 8.0, "whites": 10.0, "blacks": -6.0},
+                "grading": {
+                    "highlights": {"hue": 215.0, "sat": 14.0, "lum": 0.0},
+                    "midtones": {"hue": 210.0, "sat": 8.0, "lum": 0.0},
+                    "shadows": {"hue": 205.0, "sat": 22.0, "lum": -5.0}
+                },
+                "mixer": {
+                    "orange": {"sat": -6.0, "lum": 6.0},
+                    "yellow": {"sat": -65.0},
+                    "green": {"sat": -60.0},
+                    "aqua": {"sat": -70.0},
+                    "blue": {"sat": -55.0, "lum": -10.0},
+                    "purple": {"sat": -30.0},
+                    "magenta": {"sat": -30.0}
+                },
+                "color": {"saturation": -20.0, "vibrance": 8.0},
+                "effects": {"clarity": 22.0, "texture": 18.0, "dehaze": 8.0},
+                "vignette": {"amount": -32.0},
+                "grain": {"amount": 20.0, "size": 25.0, "roughness": 50.0}
+            }),
+        ),
         p(
             "Portrait",
             "clean-studio",
@@ -504,6 +551,26 @@ mod tests {
             let out = pr.apply(&base, 1.0);
             assert_ne!(out, base, "{} had no effect", pr.id);
         }
+    }
+
+    #[test]
+    fn evening_glory_warms_the_light_and_lifts_the_blacks() {
+        let pr = builtin().into_iter().find(|p| p.id == "lc.evening-glory").unwrap();
+        assert_eq!((pr.name.as_str(), pr.group.as_str()), ("Evening Glory", "Portrait"));
+        let base = lightcraft_develop::DevelopSettings::default();
+        let out = pr.apply(&base, 1.0);
+        assert!(out.light.blacks > 0.0 && out.light.shadows > 0.0 && out.light.highlights < 0.0);
+        assert_eq!(pr.apply(&base, 0.0), base, "Amount 0 leaves the photo alone");
+    }
+
+    #[test]
+    fn metallic_adds_contrast_and_grain_and_leaves_the_photo_alone_at_zero() {
+        let pr = builtin().into_iter().find(|p| p.id == "lc.metallic").unwrap();
+        assert_eq!((pr.name.as_str(), pr.group.as_str()), ("Metallic", "Style"));
+        let base = lightcraft_develop::DevelopSettings::default();
+        let out = pr.apply(&base, 1.0);
+        assert!(out.light.contrast > 0.0 && out.light.highlights < 0.0);
+        assert_eq!(pr.apply(&base, 0.0), base, "Amount 0 leaves the photo alone");
     }
 
     #[test]
