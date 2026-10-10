@@ -1,11 +1,10 @@
-<p align="center">
-  <a href="https://getartcraft.com/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/brand/artcraft-logo-white.svg">
-      <img alt="ArtCraft" src="docs/brand/artcraft-logo.svg" width="200">
-    </picture>
-  </a>
-</p>
+> [!IMPORTANT]
+> **This is an unofficial, modified fork of [LightCraft](https://github.com/storytold/lightcraft) by the
+> [ArtCraft](https://getartcraft.com/) team and the LightCraft contributors.** All the core work (the pure-Rust RAW
+> decoders, develop pipeline, catalog, GPU kernels, UI and MCP server) is theirs; this fork only adds the changes listed
+> in [FORK.md](FORK.md). It is not made, sponsored, endorsed or supported by the ArtCraft team. For the real thing,
+> downloads and support, go to the [original project](https://github.com/storytold/lightcraft). The ArtCraft logos and
+> marks were removed from this fork, as their [brand terms](docs/brand/LICENSE-brand.txt) require.
 
 
 <h1 align="center">LightCraft</h1>
@@ -534,16 +533,14 @@ Inter (SIL OFL 1.1). Builds made with [craft-fonts](https://github.com/storytold
 also embed its Chinese and Japanese fonts (Noto Sans CJK SC, BIZ UDPGothic, BIZ UDMincho, Shippori Mincho; SIL OFL 1.1), listed in its
 [ATTRIBUTION.md](https://github.com/storytold/craft-fonts/blob/main/ATTRIBUTION.md). All icons are original.
 
-The ArtCraft name, wordmark and logos in [`docs/brand/`](docs/brand/) are trademarks of the
-ArtCraft Team and are not covered by this license. They may be used only unmodified, and only as
-part of this repository and LightCraft, under [`docs/brand/LICENSE-brand.txt`](docs/brand/LICENSE-brand.txt).
-Forks and modified versions must remove them.
+The ArtCraft name, wordmark and logos are trademarks of the ArtCraft Team and are not covered by this license. They
+have been removed from this modified fork, as [`docs/brand/LICENSE-brand.txt`](docs/brand/LICENSE-brand.txt) requires
+(that file is kept here only to record the terms).
 
 <sub>Adobe, Photoshop, Illustrator, Premiere Pro, Lightroom, Acrobat, After Effects and InDesign are trademarks or registered trademarks of Adobe Inc. in the United States and/or other countries. LightCraft is an independent, open-source project and is not affiliated with, sponsored by or endorsed by Adobe Inc.; these names are used only to describe the workflows it is compatible with.</sub>
 
 <p align="center">
-  <a href="https://getartcraft.com/"><img alt="ArtCraft" src="docs/brand/artcraft-mark.svg" width="28"></a><br>
-  <sub>Made by the <a href="https://getartcraft.com/">ArtCraft</a> team and community.</sub>
+  <sub>Based on LightCraft, made by the <a href="https://getartcraft.com/">ArtCraft</a> team and community.</sub>
 </p>
 
 ## Star history

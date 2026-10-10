@@ -41,3 +41,11 @@ also embed the fonts listed in https://github.com/storytold/craft-fonts/blob/mai
 (the Japanese fonts BIZ UDPGothic, BIZ UDMincho and Shippori Mincho; the web build embeds only BIZ
 UDPGothic Regular), under the SIL Open Font License 1.1. Release packages include each font's
 licence as OFL-<family>.txt.
+
+Modified version
+
+This repository (https://github.com/morpheushere/lightcraft_modified) is a modified fork of LightCraft
+(https://github.com/storytold/lightcraft) by the ArtCraft Team and the LightCraft contributors, forked at upstream
+commit c435d14 (2026-10-08). The original copyright notice and licenses above are unchanged and still apply. The full
+upstream commit history, with its authors, is preserved. Modifications by Sarit (@morpheushere) are listed in FORK.md.
+The ArtCraft logos and marks were removed from this fork, as docs/brand/LICENSE-brand.txt requires for modified versions.
